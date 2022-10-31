@@ -7,6 +7,5 @@ public class Boards {
     int board_power;
 
     public static void IsPlayable() {
-
     }
 }
