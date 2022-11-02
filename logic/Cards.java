@@ -4,19 +4,49 @@ public class Cards {
     int PV; // Victory Points
     int Player; // Players that has the vard
     int[] abilities = { 0, 0, 0 }; // array of 3 values
+    boolean gender; // 0 - homem, 1 - mulher
     // each position represents the possibility to have a power
     // 0 representes no power.
+
+    // Em vez de sobrecarregar o GAME vou passar para aqui e o build fica a ação de
+    // inicialização por intermédio do construtor - é possível?
+
+    /******************************************
+     **** >>>>>>> CONSTRUIR CARTAS <<<<<<< ****
+     ******************************************/
+    /*
+     * Cartas - Estrutura onde vão ser guardadas as cartas após a inicialização
+     * CardPowers - Força das cartas
+     * PV - Pontos de vitória de cada carta
+     * Nacionalidades - estrutura com as nacionalidades para as cartas
+     * ImagemCartas - estrutura com as imagens para as cartas
+     */
+    public static void BuildCards(Cards Cartas[], int CardPowers[], int PV[], String Nacionalidades[],
+            String ImagemCartas[]) {
+
+        for (int ID = 0; ID < 12; ID++) {
+            Cartas[ID].Nationality = Nacionalidades[ID];
+            Cartas[ID].PV = PV[ID];
+            Cartas[ID].Player = 0; // ninguém tem a carta
+            Cartas[ID].Power = CardPowers[ID];
+            // Cartas[ID].gender = slots;
+        }
+        // Adicionar atributo das imagens - Tabs[] vai conter as imagens
+
+        // na estrutura Cards passada vão as cartas
+    }
 
     public void CheckAbilities() {
 
     }
 
-    public void UseAbility(Cards card) {
+    public void UseAbility(Cards Card, Map Mapa, Slots Posicao) {
         for (int i = 0; i < 3; i++) {
             if (abilities[i] != 0) {
                 // lança uma pergunta se a pessoa quer usar o poder
                 switch (abilities[i]) {
                     case (1): // Seduction
+                        Abilities.seduction(Posicao, Mapa);
                         // Selecionar uma carta - GUI
                         // Verificar se a carta está num tabuleiro adjacente
                         // Verificar se a carta escolhida não tem um escudo

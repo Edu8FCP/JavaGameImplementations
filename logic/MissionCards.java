@@ -5,13 +5,16 @@ public class MissionCards {
     final int PV = 6; // pontos de vitória de cada missão
     // Falta classe para os atributos das missões
 
+    /**************************************************
+     **** >>>>>>> SORTEAR CARTAS DE MISSÃO <<<<<<< ****
+     **************************************************/
+    /*
+     * NumOfCards - Nr de cartas de missão a sortear
+     * ListOfMissionCards - Índice das cartas de missão sorteadas
+     */
     public int DrawMissionCards(int NumOfCards, int[] ListOfMissionCards) {
         final int TotalOfCards = 40; // ver quantas cartas de missão existem
-        // do {
-        // int RandomCard = (int) (Math.random() * NumberOfCards);
-        // SelectedCards.add(cards.get(RandomCard - 1)); // adiciona às cartas a carta
-        // de missão sorteada
-        // i++; // conta quantas cartas já foram sorteadas
+
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 1; i <= TotalOfCards; i++) {
             list.add(i);
@@ -24,8 +27,27 @@ public class MissionCards {
         return 1; // 1 = ok
     }
 
+    /*********************************************************
+     **** >>>>>>> ATRIBUIÇÃO DAS CARTAS DE MISSÃO <<<<<<< ****
+     *********************************************************/
+    /*
+     * ListOfMissionCards - Índice das cartas de missão sorteadas
+     * CartasMissao - estrutura com todas as cartas de missão
+     */
     public void DisplayMissions(int[] ListOfMissionCards, ArrayList<MissionCards> CartasMissao) {
         // Recebe os índices das cartas e a estrutura onde se encontram todas as cartas
         // GUI para dispôr as cartas selecionadas
+    }
+
+    /************************************************************
+     **** >>>>>>> INICIALIZAÇÃO DAS CARTAS DE MISSÃO <<<<<<< ****
+     ************************************************************/
+    /*
+     * ImageCartasMissão - estrutura com as imagens para as cartas de missão
+     * PV - Pontos de vitória das cartas de missão
+     * CartasMissao - estrutura onde vão ser construídas todas as cartas de missão
+     */
+    public void BuildMissionCards(MissionCards CartasMissao, int PV) {
+
     }
 }
