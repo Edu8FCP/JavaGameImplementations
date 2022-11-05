@@ -28,6 +28,5 @@ public class SlotPrize extends Slots {
      * Cards - Cartas ainda disponíveis
      */
     public void DrawCardPrizes() {
-        int x = 5;
     }
 }

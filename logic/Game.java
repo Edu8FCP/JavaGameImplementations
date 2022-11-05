@@ -23,16 +23,31 @@ public class Game {
     Boards[] GameBoards = new Boards[12]; // Existem 12 tabuleiros
     int BoardsList[];
 
-    MissionCards GameMissionCards;
+    MissionCards[] GameMissionCards = new MissionCards[10]; // TODO - Substituir o 10 por quantas são
     Cards Cartas[];
     int ListOfMissions[]; // estrutura para guardar os mapas que vão ser usados na ronda
     int NumOfMissions;
 
     /**********************************************
+     **** >>>>>>> DADOS PARA DAR BUILD-BASE <<<<<<< ****
+     **********************************************/
+
+    String CardImagesP1[] = { "Card1.png", "Card2.png", "Card3.png", "Card4.png", "Card5.png", "Card6.png" };
+    String CardImagesP2[] = { "Card7.png", "Card8.png", "Card9.png", "Card10.png", "Card11.png", "Card12.png" };
+    String CardImagesP3[] = { "Card13.png", "Card14.png", "Card15.png", "Card16.png", "Card17.png", "Card18.png" };
+    String CardImagesP4[] = { "Card19.png", "Card20.png", "Card21.png", "Card22.png", "Card23.png", "Card24.png" };
+    String CardImagesP5[] = { "Card25.png", "Card26.png", "Card27.png", "Card28.png", "Card29.png", "Card30.png" };
+    int CardPowersP[] = { 1, 1, 1, 1, 1, 1 };
+    int CardPVP[] = { 1, 1, 1, 1, 1, 1 };
+    String CardNationsP[] = { "PT", "PT", "PT", "PT", "PT", "PT" };
+    int CardAbilitiesP[][] = { { 2, 0, 0 }, { 4, 0, 0 }, { 3, 0, 0 }, { 1, 0, 0 }, { 5, 0, 0 }, { 2, 0, 0 } };
+
+    /**********************************************
      **** >>>>>>> DADOS PARA DAR BUILD <<<<<<< ****
      **********************************************/
 
-    String Tabs[] = { "Tab0.png", "Tab1.png", "Tab2.png", "Tab3.png", "Tab4.png", "Tab5.png", "Tab6.png", "Tab7.png",
+    String TabsImages[] = { "Tab0.png", "Tab1.png", "Tab2.png", "Tab3.png", "Tab4.png", "Tab5.png", "Tab6.png",
+            "Tab7.png",
             "Tab8.png", "Tab9.png", "Tab10.png", "Tab11.png" };
 
     int CardPowers[] = { 2, 3, 1, 4, 4, 1, 2, 3, 2,
@@ -42,6 +57,8 @@ public class Game {
     int CardPV[] = { 2, 3, 4, 1, 1, 3, 4, 2, 3,
             4, 2, 3, 2, 1, 1, 4, 3, 3,
             1, 1, 2, 3, 2, 2, 3, 4, 1 }; // PV das cartas
+
+    String MissionCardsImages[] = { "Card100.png", "Card101.png" }; // TODO - Completar
 
     String CardImages[] = { "Card31.png", "Card32.png", "Card33.png", "Card34.png", "Card35.png", "Card36.png",
             "Card37.png",
@@ -84,10 +101,37 @@ public class Game {
      * BuildCards
      * BuildMissionCards
      * BuildBoards
+     * Initialize Players
      */
-    public void Initialize() { // série de ações que se executam para inicializar o jogo
+    public void Initialize(Game Jogo, Player[] Jogadores) { // série de ações que se executam para inicializar o jogo
         Cards.BuildCards(Cartas, CardPowers, CardPV, CardNations, CardImages); // Construir as cartas (conteúdos do
                                                                                // jogo)
+        Boards.BuildBoards(GameBoards, TabsImages);
+        MissionCards.BuildMissionCards(GameMissionCards, MissionCardsImages);
+        if (Jogo.NumOfPlayers == 2) {
+            Jogadores[0] = new Player("Edu", CardPowersP, CardPVP, CardNationsP, CardImagesP1);
+            Jogadores[1] = new Player("Edu2", CardPowersP, CardPVP, CardNationsP, CardImagesP2);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP1);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP2);
+        }
+        if (Jogo.NumOfPlayers == 3) {
+            Jogadores[0] = new Player("Edu", CardPowersP, CardPVP, CardNationsP, CardImagesP1);
+            Jogadores[1] = new Player("Edu2", CardPowersP, CardPVP, CardNationsP, CardImagesP2);
+            Jogadores[2] = new Player("Edu3", CardPowersP, CardPVP, CardNationsP, CardImagesP3);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP1);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP2);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP3);
+        }
+        if (Jogo.NumOfPlayers == 4) {
+            Jogadores[0] = new Player("Edu", CardPowersP, CardPVP, CardNationsP, CardImagesP1);
+            Jogadores[1] = new Player("Edu2", CardPowersP, CardPVP, CardNationsP, CardImagesP2);
+            Jogadores[2] = new Player("Edu3", CardPowersP, CardPVP, CardNationsP, CardImagesP3);
+            Jogadores[3] = new Player("Edu4", CardPowersP, CardPVP, CardNationsP, CardImagesP4);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP1);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP2);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP3);
+            // Cards.BuildBaseCards(null, CardPowersP, CardPVP, CardNationsP, CardImagesP4);
+        }
 
     }
 
@@ -100,9 +144,13 @@ public class Game {
      * turno (válidas também para o primeiro turno)
      */
     public void StartGame() {
-        GameMissionCards.DrawMissionCards(NumOfMissions, ListOfMissions);
-        GameMissionCards.DisplayMissions(ListOfMissions, null);// Depois temos de meter aqui as cartas
-        AdvanceRound(); // No início do jogo avançamos da ronda 0 (fictícia) para a 1
+        // GameMissionCards.DrawMissionCards(NumOfMissions, ListOfMissions);
+        // GameMissionCards.DisplayMissions(ListOfMissions, null);// Depois temos de
+        // meter aqui as cartas
+        Turn = 0; // Turno do jogo volta a 0
+        Round++; // Avança a ronda do jogo
+        GameMap.RandBoards(MapBoards); // sorteia mapas
+        GameMap.AssembleMap(MapBoards, GameMap, GameBoards);
         // Dá o token ao jogador que tem o direito a jogar uma carta
     }
 
@@ -134,8 +182,8 @@ public class Game {
      * --->>> TEM DE SER FEITO NO SERVIDOR PARA O SORTEIO SER IGUAL PARA TODOS
      */
 
-    public void AdvanceRound() {
-        Solve();
+    public void AdvanceRound(Map Mapa) {
+        Solve(Mapa);
         Turn = 0; // Turno do jogo volta a 0
         Round++; // Avança a ronda do jogo
         GameMap.RandBoards(MapBoards); // sorteia mapas
@@ -150,7 +198,22 @@ public class Game {
      * PERMITE QUE SE USEM AS HABILIDADES (DOS TABULEIROS SE APLICÁVEL)
      * ATRIBUI OS PRÉMIOS
      */
-    public void Solve() {
+    public void Solve(Map Mapa) {
+        if (Mapa == null) {
+            System.out.println("Erro ao carregar o jogo...\n");
+        }
+        int vencedor;
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 3; j++) {
+                // retorna o nr do jogador vencedor
+                vencedor = Boards.SolveBoard(Mapa.Tabuleiros[i][j]);
+                if (vencedor == 0) {
+
+                } else {
+                    // Adiciona carta do slot prize à player hand
+                }
+            }
+        }
         // Este método só executa quando o turno se esgotar
     }
 

@@ -1,0 +1,24 @@
+SLOTS - 0%
+SLOTS_PRIZE - RANDOM - DONE
+PLAYER - 0%
+MISSION CARDS - DRAW (aka RAND) - DONE
+MAP - ASSEMBLE AND RAND - DONE
+GAME - 10%
+ESTORIL - 10%
+CARDS - BUILD - DONE
+BOARDS - BUILD - DONE
+ABILITIES - 0%
+
+----------
+Estoril 
+-> Faz Scan do nr de jogadores
+-> Inicializa o GAME (Construtor)
+-> Inicializa os jogadores e as suas cartas base
+-> Dá Build das Cartas 
+-> Dá Build das Mission
+-> Dá Draw das Mission
+-> Dá Build dos Tabuleiros (Initialize)
+--->>> COMEÇA CICLO DE JOGO <<<---
+
+--->>> TERMINA CICLO DE JOGO <<<---
+-> Count Poins (TODO)

@@ -42,7 +42,11 @@ public class Map {
     public void AssembleMap(int ListOfBoards[], Map Mapa, Boards[] Tabuleiros) {
         for (int i = 0; i < NrOfTabuleiros / 2; i++) {
             Mapa.Tabuleiros[0][i] = Tabuleiros[ListOfBoards[i]];
+            Tabuleiros[ListOfBoards[i]].linha = 0;
+            Tabuleiros[ListOfBoards[i]].coluna = i;
             Mapa.Tabuleiros[1][i] = Tabuleiros[ListOfBoards[i + NrOfTabuleiros / 2]];
+            Tabuleiros[ListOfBoards[i + NrOfTabuleiros / 2]].linha = 1;
+            Tabuleiros[ListOfBoards[i + NrOfTabuleiros / 2]].coluna = i;
         } // Construção da matriz com os tabuleiros
 
         // Vai ser usado pela GUI para montar o mapa
