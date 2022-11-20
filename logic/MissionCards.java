@@ -4,17 +4,17 @@ import java.util.Collections;
 public class MissionCards {
     int ID; // ID vai identificar qual a missão (switch case GIGANTE)
     final int PV = 6; // pontos de vitória de cada missão
-    // Falta classe para a imagem das missões
+    // TODO - Falta classe para a imagem das missões
 
     /**************************************************
      **** >>>>>>> SORTEAR CARTAS DE MISSÃO <<<<<<< ****
      **************************************************/
     /*
-     * NumOfCards - Nr de cartas de missão a sortear
+     * NumOfCards - Nr de cartas de missão a sortear (4)
      * ListOfMissionCards - Índice das cartas de missão sorteadas
      */
-    public int DrawMissionCards(int NumOfCards, int[] ListOfMissionCards) {
-        final int TotalOfCards = 40; // ver quantas cartas de missão existem
+    public static int DrawMissionCards(int NumOfCards, int[] ListOfMissionCards) {
+        final int TotalOfCards = 10; // TODO ver quantas cartas de missão existem
 
         ArrayList<Integer> list = new ArrayList<Integer>();
         for (int i = 1; i <= TotalOfCards; i++) {
@@ -23,11 +23,19 @@ public class MissionCards {
         Collections.shuffle(list); // Ordena aleatoriamente os nrs aka BARALHA ahaha
         for (int i = 0; i < 4; i++) {
             ListOfMissionCards[i] = list.get(i); // Copiamos os índices para um array
+            System.out.println("Carta Sorteada " + ListOfMissionCards[i]);
         }
         // } while (i < NumOfCards);
-        return 1; // 1 = ok
+        return 1; // 1 = ok + array com as 4 cartas sorteadas
     }
 
+    // SERVIU PARA TESTAR A FUNÇÃO! Está a funcionar!
+/*     public static void main(String[] args) {
+        int[] cartas = new int[4];
+        DrawMissionCards(4, cartas);    
+    } */
+
+    
     /*********************************************************
      **** >>>>>>> ATRIBUIÇÃO DAS CARTAS DE MISSÃO <<<<<<< ****
      *********************************************************/

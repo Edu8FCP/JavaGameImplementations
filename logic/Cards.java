@@ -22,9 +22,12 @@ public class Cards {
      * PV - Pontos de vitória de cada carta
      * Nacionalidades - estrutura com as nacionalidades para as cartas
      * ImagemCartas - estrutura com as imagens para as cartas
+     * abilities - array com as habilidades que pode usar
+     * genero - se é homem ou mulher
+     * IMAGENS -> DE 0 a 29 (30 cartas). A cada 6 é de um player diferente
      */
     public static void BuildBaseCards(ArrayList<Cards> Cartas, int CardPowers[], int PV[], String Nacionalidades[],
-            String ImagemCartas[]) {
+            String ImagemCartas[], int abilities[][], boolean genero) {
 
         Cards aux = new Cards();
         for (int ID = 0; ID < 12; ID++) {
@@ -32,6 +35,8 @@ public class Cards {
             aux.PV = PV[ID];
             aux.Player = 0; // ninguém tem a carta
             aux.Power = CardPowers[ID];
+            aux.abilities = abilities[ID];
+            aux.gender = genero;
             // Cartas[ID].gender = slots;
             Cartas.add(aux);
         }
@@ -44,17 +49,24 @@ public class Cards {
      * Cartas - Estrutura onde vão ser guardadas as cartas após a inicialização
      * CardPowers - Força das cartas
      * PV - Pontos de vitória de cada carta
+     * abilities - habilidades que as cartas podem usar
+     * gender - se é homem ou mulher (bool)
+     * IMAGENS - de 30 para TOTAL
      * Nacionalidades - estrutura com as nacionalidades para as cartas
      * ImagemCartas - estrutura com as imagens para as cartas
      */
     public static void BuildCards(Cards Cartas[], int CardPowers[], int PV[], String Nacionalidades[],
-            String ImagemCartas[]) {
-
+            String ImagemCartas[], int abilities[][], boolean gender) {
+                
+        Cards aux = new Cards();
         for (int ID = 0; ID < 12; ID++) {
-            Cartas[ID].Nationality = Nacionalidades[ID];
-            Cartas[ID].PV = PV[ID];
-            Cartas[ID].Player = 0; // ninguém tem a carta
-            Cartas[ID].Power = CardPowers[ID];
+            aux.Nationality = Nacionalidades[ID];
+            aux.PV = PV[ID];
+            aux.Player = 0; // ninguém tem a carta
+            aux.Power = CardPowers[ID];
+            aux.abilities = abilities[ID];
+            aux.gender = gender;
+            Cartas[ID] = aux;
             // Cartas[ID].gender = slots;
         }
         // Adicionar atributo das imagens - Tabs[] vai conter as imagens
