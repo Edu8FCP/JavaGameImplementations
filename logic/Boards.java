@@ -19,14 +19,18 @@ public class Boards {
      */
 
     public static void BuildBoards(Boards Tabuleiros[], String Tabs[]) {
+        Boards aux = new Boards();
         for (int ID = 0; ID < 12; ID++) {
             Slots[][] slot = new Slots[2][2];
-            Tabuleiros[ID].ID = ID;
-            Tabuleiros[ID].orientation = 1;
-            Tabuleiros[ID].board_power = ID;
-            Tabuleiros[ID].slots = slot;
-            Tabuleiros[ID].linha = 0;
-            Tabuleiros[ID].coluna = 0;
+            aux.ID = ID;
+            aux.orientation = 1;
+            // TODO - Substituir para ver se dá a rotação
+          //  aux.orientation = (int)(Math.random()*4)+1;
+            aux.board_power = ID;
+            aux.slots = slot;
+            aux.linha = 0;
+            aux.coluna = 0;
+            Tabuleiros[ID] = aux;
         }
         // Adicionar atributo das imagens - Tabs[] vai conter as imagens
 
