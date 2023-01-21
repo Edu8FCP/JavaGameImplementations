@@ -1,0 +1,42 @@
+diff a/Comms/src/comms/Server.java b/Comms/src/comms/Server.java	(rejected hunks)
+@@ -93,28 +93,34 @@
+                             dadoss = dadoss.concat(auxs);
+ 
+                             System.out.println("Boards: " + dadoss);
++
+                             List<Integer> missions = new ArrayList<>();
+                             while (missions.size() < 4) {
+                                 double randomDouble = Math.random();
+-                                int randomInt = (int) Math.round(randomDouble * 10) + 1;
+-                                missions.add(randomInt);
++                                Integer randomInt = (int) Math.round(randomDouble * (10 - 1) + 1);
++                                if (!missions.contains(randomInt)) {
++                                    missions.add(randomInt);
++                                }
+                             }
+                             auxs = missions.toString();
+                             auxs = auxs.substring(1, auxs.length() - 1);
+                             dadoss = dadoss.concat(" | " + auxs);
+ 
+-                            System.out.println("Boards + Missions: " + dadoss);
++                            System.out.println("Boards | Missions: " + dadoss);
++
+                             List<Integer> prizes = new ArrayList<>();
+                             while (prizes.size() < 6) {
+                                 double randomDouble = Math.random();
+-                                int randomInt = (int) Math.round(randomDouble * Server.nprizes) + 1;
+-                                prizes.add(randomInt);
++                                Integer randomInt = (int) Math.round(randomDouble * (Server.nprizes - 1)) + 1;
++                                if (!prizes.contains(randomInt)) {
++                                    prizes.add(randomInt);
++                                }
+                             }
+                             auxs = prizes.toString();
+                             auxs = auxs.substring(1, auxs.length() - 1);
+                             dadoss = dadoss.concat(" | " + auxs);
+ 
+-                            System.out.println("Boards + Missions + Prizes: " + dadoss);
++                            System.out.println("Boards | Missions | Prizes: " + dadoss);
+                             for (Socket socket : Server.clientSockets) {
+                                 sendInfo(codigo, dadoss, socket);
+                             }
